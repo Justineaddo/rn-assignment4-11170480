@@ -1,8 +1,26 @@
+
 import React from 'react';
 import { View, Text, TextInput, Image, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import JobCard from './JobCard';
 
-const JobScreen = ({ navigation }) => {
+const JobScreen = () => {
+  const featuredJobs = [
+    { imageSource: require('./assets/fbbr.png'), title: 'Software Engineer', company: 'Facebook', salary: '$180,000', location: 'Accra, Ghana' },
+    { imageSource: require('./assets/gg.png'), title: 'Software Engineer', company: 'Google', salary: '$180,000', location: 'Accra, Ghana' },
+  ];
+
+  const popularJobs = [
+    { imageSource: require('./assets/jricon.png'), title: 'Jr Executive', company: 'Burger King', salary: '$96,000/y', location: 'Los Angeles, US' },
+    { imageSource: require('./assets/pricon.png'), title: 'Product Manager', company: 'Beats', salary: '$84,000/y', location: 'Florida, US' },
+    { imageSource: require('./assets/fbpr.png'), title: 'Product Manager', company: 'Facebook', salary: '$86,000/y', location: 'Florida, US' },
+    { imageSource: require('./assets/find.png'), title: 'Product Manager', company: 'Facebook', salary: '$86,000/y', location: 'Florida, US' },
+    { imageSource: require('./assets/ig.png'), title: 'Product Manager', company: 'Facebook', salary: '$86,000/y', location: 'Florida, US' },
+    { imageSource: require('./assets/fly.png'), title: 'Product Manager', company: 'Facebook', salary: '$86,000/y', location: 'Florida, US' },
+    { imageSource: require('./assets/gg.png'), title: 'Product Manager', company: 'Facebook', salary: '$86,000/y', location: 'Florida, US' },
+    { imageSource: require('./assets/myicon.png'), title: 'Product Manager', company: 'Facebook', salary: '$86,000/y', location: 'Florida, US' },
+  ];
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -10,10 +28,7 @@ const JobScreen = ({ navigation }) => {
           <Text style={styles.userName}>Justine Addo</Text>
           <Text style={styles.userEmail}>justineaddo15@gmail.com</Text>
         </View>
-        <Image 
-    source={require('./assets/myicon.png')} 
-    style={[styles.popularJobIcon, {width: 30, height: 30}]} 
-  />
+        <Image source={require('./assets/myicon.png')} style={styles.profileImage} />
       </View>
       
       <View style={styles.searchContainer}>
@@ -27,154 +42,43 @@ const JobScreen = ({ navigation }) => {
       
       <View style={styles.sectionHeader}>
         <Text style={styles.sectionTitle}>Featured Jobs</Text>
-        <TouchableOpacity onPress={() => {  }}>
+        <TouchableOpacity onPress={() => { }}>
           <Text style={styles.seeAll}>See all</Text>
         </TouchableOpacity>
       </View>
       
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.featuredJobsContainer}>
-      <View style={styles.featuredJobCard}>
-        <Image source={require('./assets/fbbr.png')} style={styles.featuredJobIcon} />
-        <Text style={styles.featuredJobTitle}>Software Engineer</Text>
-        <Text style={styles.featuredJobCompany}>Facebook</Text>
-        <Text style={styles.featuredJobSalary}>$180,000</Text>
-        <Text style={styles.featuredJobLocation}>Accra, Ghana</Text>
-      </View>
-      <View style={styles.featuredJobCard}>
-        <Image source={require('./assets/gg.png')} style={styles.featuredJobIcon} />
-        <Text style={styles.featuredJobTitle}>Software Engineer</Text>
-        <Text style={styles.featuredJobCompany}>Google</Text>
-        <Text style={styles.featuredJobSalary}>$180,000</Text>
-        <Text style={styles.featuredJobLocation}>Accra, Ghana</Text>
-      </View>
+        {featuredJobs.map((job, index) => (
+          <JobCard
+            key={index}
+            imageSource={job.imageSource}
+            title={job.title}
+            company={job.company}
+            salary={job.salary}
+            location={job.location}
+            isFeatured={true}
+          />
+        ))}
       </ScrollView>
       
       <View style={styles.sectionHeader}>
         <Text style={styles.sectionTitle}>Popular Jobs</Text>
-        <TouchableOpacity onPress={() => { /* Navigate to see all popular jobs */ }}>
+        <TouchableOpacity onPress={() => { }}>
           <Text style={styles.seeAll}>See all</Text>
         </TouchableOpacity>
       </View>
       
-      <View style={styles.popularJobCard}>
-  <Image 
-    source={require('./assets/jricon.png')} 
-    style={[styles.popularJobIcon, {width: 30, height: 30}]} 
-  />
-  <View>
-    <Text style={styles.popularJobTitle}>Jr Executive</Text>
-    <Text style={styles.popularJobCompany}>Burger King</Text>
-  </View>
-  <View style={styles.jobDetails}>
-    <Text style={styles.popularJobSalary}>$96,000/y</Text>
-    <Text style={styles.popularJobLocation}>Los Angeles, US</Text>
-  </View>
-</View>
-
-      
-<View style={styles.popularJobCard}>
-  <Image 
-    source={require('./assets/pricon.png')} 
-    style={[styles.popularJobIcon, {width: 30, height: 30}]} 
-  />
-  <View>
-          <Text style={styles.popularJobTitle}>Product Manager</Text>
-          <Text style={styles.popularJobCompany}>Beats</Text>
-        </View>
-        <View style={styles.jobDetails}>
-          <Text style={styles.popularJobSalary}>$84,000/y</Text>
-          <Text style={styles.popularJobLocation}>Florida, US</Text>
-        </View>
-      </View>
-      
-      <View style={styles.popularJobCard}>
-  <Image 
-    source={require('./assets/fbpr.png')} 
-    style={[styles.popularJobIcon, {width: 30, height: 30}]} 
-  />
-  <View>
-          <Text style={styles.popularJobTitle}>Product Manager</Text>
-          <Text style={styles.popularJobCompany}>Facebook</Text>
-        </View>
-        <View style={styles.jobDetails}>
-          <Text style={styles.popularJobSalary}>$86,000/y</Text>
-          <Text style={styles.popularJobLocation}>Florida, US</Text>
-        </View>
-      </View>
-<View style={styles.popularJobCard}>
-<Image 
-  source={require('./assets/find.png')} 
-  style={[styles.popularJobIcon, {width: 30, height: 30}]} 
-/>
-<View>
-        <Text style={styles.popularJobTitle}>Product Manager</Text>
-        <Text style={styles.popularJobCompany}>Facebook</Text>
-      </View>
-      <View style={styles.jobDetails}>
-        <Text style={styles.popularJobSalary}>$86,000/y</Text>
-        <Text style={styles.popularJobLocation}>Florida, US</Text>
-      </View>
-    </View>
-
-    <View style={styles.popularJobCard}>
-<Image 
-  source={require('./assets/ig.png')} 
-  style={[styles.popularJobIcon, {width: 30, height: 30}]} 
-/>
-<View>
-        <Text style={styles.popularJobTitle}>Product Manager</Text>
-        <Text style={styles.popularJobCompany}>Facebook</Text>
-      </View>
-      <View style={styles.jobDetails}>
-        <Text style={styles.popularJobSalary}>$86,000/y</Text>
-        <Text style={styles.popularJobLocation}>Florida, US</Text>
-      </View>
-    </View>
-
-    <View style={styles.popularJobCard}>
-<Image 
-  source={require('./assets/fly.png')} 
-  style={[styles.popularJobIcon, {width: 30, height: 30}]} 
-/>
-<View>
-        <Text style={styles.popularJobTitle}>Product Manager</Text>
-        <Text style={styles.popularJobCompany}>Facebook</Text>
-      </View>
-      <View style={styles.jobDetails}>
-        <Text style={styles.popularJobSalary}>$86,000/y</Text>
-        <Text style={styles.popularJobLocation}>Florida, US</Text>
-      </View>
-    </View>
-
-    <View style={styles.popularJobCard}>
-<Image 
-  source={require('./assets/gg.png')} 
-  style={[styles.popularJobIcon, {width: 30, height: 30}]} 
-/>
-<View>
-        <Text style={styles.popularJobTitle}>Product Manager</Text>
-        <Text style={styles.popularJobCompany}>Facebook</Text>
-      </View>
-      <View style={styles.jobDetails}>
-        <Text style={styles.popularJobSalary}>$86,000/y</Text>
-        <Text style={styles.popularJobLocation}>Florida, US</Text>
-      </View>
-    </View>
-
-    <View style={styles.popularJobCard}>
-<Image 
-  source={require('./assets/myicon.png')} 
-  style={[styles.popularJobIcon, {width: 30, height: 30}]} 
-/>
-<View>
-        <Text style={styles.popularJobTitle}>Product Manager</Text>
-        <Text style={styles.popularJobCompany}>Facebook</Text>
-      </View>
-      <View style={styles.jobDetails}>
-        <Text style={styles.popularJobSalary}>$86,000/y</Text>
-        <Text style={styles.popularJobLocation}>Florida, US</Text>
-      </View>
-    </View>
+      {popularJobs.map((job, index) => (
+        <JobCard
+          key={index}
+          imageSource={job.imageSource}
+          title={job.title}
+          company={job.company}
+          salary={job.salary}
+          location={job.location}
+          isFeatured={false}
+        />
+      ))}
     </ScrollView>
   );
 };
@@ -240,68 +144,6 @@ const styles = StyleSheet.create({
   featuredJobsContainer: {
     marginBottom: 20,
   },
-  featuredJobCard: {
-    width: 250,
-    backgroundColor: '#4A90E2',
-    borderRadius: 10,
-    padding: 20,
-    marginRight: 15,
-  },
-  featuredJobIcon: {
-    marginBottom: 10,
-  },
-  featuredJobTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  featuredJobCompany: {
-    fontSize: 16,
-    color: '#fff',
-    marginBottom: 10,
-  },
-  featuredJobSalary: {
-    fontSize: 16,
-    color: '#fff',
-  },
-  featuredJobLocation: {
-    fontSize: 14,
-    color: '#fff',
-  },
-  popularJobCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#f8f8f8',
-    borderRadius: 10,
-    padding: 15,
-    marginBottom: 10,
-  },
-  popularJobIcon: {
-    marginRight: 10,
-  },
-  popularJobTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  popularJobCompany: {
-    fontSize: 14,
-    color: '#888',
-  },
-  jobDetails: {
-    marginLeft: 'auto',
-    alignItems: 'flex-end',
-  },
-  popularJobSalary: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  popularJobLocation: {
-    fontSize: 12,
-    color: '#888',
-  },
 });
 
 export default JobScreen;
-
