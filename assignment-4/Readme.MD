@@ -23,3 +23,8 @@ name: The name of the logged-in user.
 email: The email of the logged-in user.
 Assets
 Contains the images used in the application. Ensure that the images are placed in the assets folder within the project directory.
+
+## ScreenShots
+![alt text](<assets/Screenshot 2024-06-19 080719.png>)
+![alt text](<assets/Screenshot 2024-06-19 080755.png>)
+![alt text](<assets/Screenshot 2024-06-19 080826.png>)
